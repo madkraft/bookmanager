@@ -1,6 +1,6 @@
 (function () {
   'use strict'
 
-  angular.module('app', ['angularModel'])
+  angular.module('app', ['angularModel', 'ngResource'])
 
 })()

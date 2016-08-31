@@ -3,8 +3,8 @@
 
   app.controller('MainController', MainController)
 
-  MainController.$inject = ['appStateService', 'Book']
-  function MainController (appState, Book) {
+  MainController.$inject = ['appStateService', 'Book', 'Post']
+  function MainController (appState, Book, Post) {
     var ctrl = this
 
     window.appState = appState
@@ -22,11 +22,16 @@
         author: ctrl.bookAuthor
       })
 
+
       ctrl.bookTitle = ''
       ctrl.bookAuthor = ''
 
       appState.bookstore.push(newBook)
     }
+
+    ctrl.post = new Post()
+    appState.post = ctrl.post
+    appState.posts = Post.query()
 
   }
 
