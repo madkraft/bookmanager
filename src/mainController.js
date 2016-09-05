@@ -3,8 +3,8 @@
 
   app.controller('MainController', MainController)
 
-  MainController.$inject = ['appStateService', 'Book', 'Post']
-  function MainController (appState, Book, Post) {
+  MainController.$inject = ['appStateService', 'book']
+  function MainController (appState, book) {
     var ctrl = this
 
     window.appState = appState
@@ -17,21 +17,18 @@
     ctrl.onSubmit = onSubmit
 
     function onSubmit () {
-      var newBook = new Book ({
+      var newBook = book.createNormalBook({
         title: ctrl.bookTitle,
         author: ctrl.bookAuthor
       })
 
+      console.log('', newBook);
 
       ctrl.bookTitle = ''
       ctrl.bookAuthor = ''
 
-      appState.bookstore.push(newBook)
+      appState.bookstore.push(newBook.getBookInfo())
     }
-
-    ctrl.post = new Post()
-    appState.post = ctrl.post
-    appState.posts = Post.query()
 
   }
 
